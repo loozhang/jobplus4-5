@@ -1,21 +1,22 @@
 class BaseConfig(object):
-    SECRET_KEY = 'very secret key'
+    """配置基类 """
+    SECRET_KEY='makesure to set very secret key'
 
 class DevelopmentConfig(BaseConfig):
-    DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://root@localhost:3306/simpledu?charset=utf8'
-
+    """开发环境配置"""
+    DEBUG=True
+    SQLALCHEMY_DATABASE_URI='mysql+mysqldb://root@localhost:3306/jobplus4-5?charset=utf8'
 
 class ProductionConfig(BaseConfig):
+    """生产环境配置"""
     pass
-
 
 class TestingConfig(BaseConfig):
+    """测试环境配置"""
     pass
 
-
-configs = {
-    'development': DevelopmentConfig,
-    'production': ProductionConfig,
-    'testing': TestingConfig
-}
+configs={
+        'development':DevelopmentConfig,
+        'production':ProductionConfig,
+        'testing':TestingConfig
+        }
