@@ -1,11 +1,13 @@
 from flask import Flask
-
+from jobplus.config import configs
 
 def register_extensions(app):
     pass
 
 
 def register_blueprints(app):
+    from .handlers import front
+    app.register_blueprint(front)
 
     pass
 
