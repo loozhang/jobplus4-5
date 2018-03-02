@@ -1,2 +1,40 @@
 {% extends "base.html" %}
 {% from "macros.html" import render_pagination %}
+{% block body %}
+ <div class="jumbotron">
+    <div class="container">
+         <h1>JOBPLUS4-5</h1>
+         <p>好工作尽在jobplus</p>
+         <p><a class="btn btn-primary btn-lg" href="#" role="button">Go</a></p>
+         </div>
+         </div>
+
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#">热门职位</a></li>
+    <li role="presentation"><a href="#">热门公司</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+    <img src="..." alt="...">
+    </a>
+    </div>
+    <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+    <img src="..." alt="...">
+    </a>
+    </div>
+    <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+    <img src="..." alt="...">
+    </a>
+    </div>
+    <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+    <img src="..." alt="...">
+    </a>
+    </div>
+                 
+</div>
+{% endblock %}
