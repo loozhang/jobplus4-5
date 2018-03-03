@@ -6,11 +6,13 @@ from flask_login import login_user, logout_user, login_required
 
 front = Blueprint('front', __name__)
 
-
+"""jobplus首页路由"""
 @front.route('/')
 def index():
     return render_template('index.html')
 
+
+"""实现三类用户的三个不同的路由"""
 @front.route('/vister')
 def vister_index():
     return render_template('vister/index.html')
@@ -21,12 +23,9 @@ def hr_index():
 
 @front.route('/admin')
 def admin_index():
-    return render_template('admin/index.html')
+    return render_template('admin/admin_base.html')
 
 
-@front.route('/job')
-def job():
-    return render_template('job.html')
 
 @front.route('/login', methods=['GET', 'POST'])
 def login():

@@ -1,0 +1,62 @@
+{% extends "./admin/admin_base.html" %}
+{% block title %}
+Admin
+{% endblock %}
+
+{% block user %}
+<div class="table-responsive">
+<table class="table table-striped table-bordered table-hover">
+    <caption>用户管理</caption>
+      <thead>
+      <tr>
+      <th>ID</th>
+      <th>邮箱</th>
+      <th>用户类型</th>
+      <th>姓名</th>
+      <th>状态</th>
+      <th>手机号</th>
+      <th>企业名称</th>
+      <th>企业网站</th>
+      <th>操作</th>
+      </tr
+      <!-- 用户表＋用户信息表＋企业信息表-->>
+      <tbody>
+      {% for  %}
+        <tr>
+        <td>{{ }}</td>
+        <td>{{ }}</td>
+        <td>{{ }}</td>
+        <td>{{ }}</td>
+        <td>{{ }}</td>
+        <td>{{ }}</td>
+       <td>{{ }}</td>
+       <td>{{ }}</td>
+       <td>
+           <div class="btn-group" role="group">
+               <a href="" type="button" class="btn btn-default" title="">
+               <span class="glyphicon glyphicon-pencil" title="" aria-hidden="true"></span>
+               </a>
+               <a href="" type="button" class="btn btn-default" title="">
+                   <span class="glyphicon glyphicon-trash" title="" aria-hidden="true"></span>
+                   
+               </a>
+               
+           </div>
+           
+       </td>
+       
+   </tr>
+   
+   {% endfor %}
+   
+   </tbody>
+   
+   </thead>
+   
+   </table>
+
+
+
+
+{% endblock%}
+

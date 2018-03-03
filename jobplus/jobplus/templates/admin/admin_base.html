@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}
+Admin
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="row">
+    <div class="col-md-3">
+        <h2>用户管理</h2>
+        <div class="list-group">
+        <a href="#" class="list-group-item">1</a>
+        <a href="#" class="list-group-item">2</a>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <h2>职位管理</h2>
+        <div class="list-group">
+        <a href="#" class="list-group-item">1</a>
+        </div>
+    </div>
+    {% block user %}{% endblock%}
+    {% block job %}{% endblock %}
+</div>
+</div>
+{% endblock %}
+
+
