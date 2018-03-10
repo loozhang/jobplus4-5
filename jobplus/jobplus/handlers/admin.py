@@ -3,6 +3,7 @@ from jobplus.decorators import admin_required
 from jobplus.models import User,db
 from jobplus.forms import RegisterForm
 from flask_login import current_user
+
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
 
@@ -56,4 +57,3 @@ def delete_user(user_id):
     db.session.commit()
     flash('不能删除自己','success')
     return redirect(url_for('admin.user'))
-
