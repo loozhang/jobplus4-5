@@ -1,5 +1,5 @@
 #coding:utf-8
-from jobplus.models import db,User
+from jobplus.models import db,User,Resume
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError, TextAreaField, IntegerField,SelectField
 from wtforms.validators import Length, Email, EqualTo, Required, URL, NumberRange,DataRequired
@@ -48,18 +48,27 @@ class CompanyRegisterForm(RegisterForm):
         db.session.add(user)
         db.session.commit()
         return user
-
-class VisterInfo(FlaskForm):
+class JobInfo(FlaskForm):
+    pass
+class ResumeForm(FlaskForm):
+    """普通用户简历"""
     username = StringField('姓名', validators=[DataRequired(message=""),Required(), Length(3, 24)])
     gender = SelectField('性别',choices=[('10','男'),('20','女')])
     phone = StringField('手机号码', validators=[DataRequired(),Length(11, 11, )])
     college = StringField('毕业院校', validators=[DataRequired(message='必须填写'),Length(2, 24,)])
-    education = SelectField('学厉', choices=[
+    degree = SelectField('学厉', choices=[
         ('1', '大专'),
         ('2', '本科'),
         ('3', '研究生'),
         ('4', '博士')
         ])
     major = StringField('专业', validators=[DataRequired(message=''),Length(3, 24, message='')])
-    service_year = StringField('工作经验', validators=[DataRequired(),Length(1,256)])
+    work_year = StringField('工作经验', validators=[DataRequired(),Length(1,256)])
+    experience = StringField('工作经验', validators=[DataRequired(),Length(1,256)])
     submit = SubmitField('点击更新')
+    def creat_resume(self,user_id):
+        resume=Resume(user_id=user_id,name=self.username,gender=self.gender,phone=self.phone,degree=self.degree,work_year=self.work_year,exprience=self.exprience)
+
+        db.session.add(resume)
+        db.session.commit()
+        return resume

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block body %}
+ <div class="jumbotron">
+         <div class="container">
+            <h1>JOBPLUS4-5</h1>
+         </div>
+</div>
+<div class= "row">
+<div class="col-md-9">
+<div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">{{job.name}}</div>
+          <div class="panel-body">
+              <p>职位指责：{{job.description}}</p>
+              <p>职位指责：{{job.description}}</p>
+           </div>
+           <div class="panel panel-primary">薪资：{{job.sarary}}</div>
+           <div class="panel panel-success">工作经验：{{job.expeirence}}</div>
+           <div class="panel panel-info">工作地点：{{job.location}}</div>
+           <div class="panel panel-warning">学历要求：{{job.degree}}</div>
+           <div class="panel panel-danger">发布时间：{{job.create_at}}</div>
+        <a href="#" class="btn btn-primary btn-lg active" role="button">投递简历</a>
+
+
+        </div>
+</div>
+<div class="col-md-3">
+    <a class="thumbnail">
+        <img src="{{job.job_url}}" alt="公司信息">
+        <h4>公司名称<h4>
+        <p>公司简介<P>
+        </a>
+    </div>
+</div>
+{% endblock %}
+

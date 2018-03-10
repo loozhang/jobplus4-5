@@ -1,0 +1,10 @@
+.nav-pagination {
+      text-align: center;
+  }
+
+.media{
+ text-overflow: ellipsis;
+   overflow: hidden;
+     white-space: nowrap;
+}
+
