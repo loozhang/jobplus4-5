@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% from "macros.html" import render_pagination %}
+{% block body %}
+ <div class="jumbotron">
+         <div class="container">
+            <h1>JOBPLUS4-5</h1>
+         </div>
+
+
+<div class="row">
+    {% for comany in jobs %}
+    <div class="col-xs-6 col-md-3">
+    <div class="thumbnail">
+        <h4> {{ job.name }} </h4>
+    <img src="..." alt="...">
+    </div>
+    </div>
+    <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+    <img src="..." alt="...">
+    </a>
+    </div>
+    <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+    <img src="..." alt="...">
+    </a>
+    </div>
+    <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+    <img src="..." alt="...">
+    </a>
+    </div>
+    {% endfor %}                 
+</div>
+{% endblock %}
