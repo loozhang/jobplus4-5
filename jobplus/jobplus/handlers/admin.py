@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, current_app, redirect, url_for, flash
 from jobplus.decorators import admin_required
-from jobplus.models import Course
-from jobplus.forms import CourseForm
+from jobplus.models import User,Job,Company
+from jobplus.forms import LoginForm,RegisterForm,CompanyRegisterForm
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 

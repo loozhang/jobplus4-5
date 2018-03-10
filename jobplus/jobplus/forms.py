@@ -3,6 +3,7 @@ from jobplus.models import db,User
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError, TextAreaField, IntegerField,SelectField
 from wtforms.validators import Length, Email, EqualTo, Required, URL, NumberRange,DataRequired
+
 class LoginForm(FlaskForm):
     email = StringField("邮箱",validators=[Required(),Email()])
     password = PasswordField("密码",validators=[Required(),Length(6,24)])
@@ -15,8 +16,6 @@ class LoginForm(FlaskForm):
         user = User.query.filter_by(email=self.email.data).first()
         if user and not user.check_password(field.data):
             raise ValidationError('密码错误')
-
-
 
 class RegisterForm(FlaskForm):
     username = StringField('用户名', validators=[Required(), Length(3, 24)])
@@ -33,7 +32,6 @@ class RegisterForm(FlaskForm):
         if User.query.filter_by(email=field.data).first():
             raise ValidationError('邮箱已经存在')
 
-
     def create_user(self):
         user = User(username=self.username.data,email=self.email.data,password=self.password.data)
         db.session.add(user)
@@ -41,6 +39,7 @@ class RegisterForm(FlaskForm):
         return user
     def test(self):
         print("++++++++++")
+
 class CompanyRegisterForm(RegisterForm):
     username = StringField('公司名', validators=[Required(), Length(3, 24)])
     def create_user(self):

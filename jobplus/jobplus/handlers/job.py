@@ -1,4 +1,4 @@
-""" 职位详情，职位列表"""
+""" job list,job detail """
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app
 from jobplus.models import  User,Job
 from jobplus.forms import LoginForm,RegisterForm,CompanyRegisterForm
