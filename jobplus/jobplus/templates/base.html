@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>{% block title %}jobplus{% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href = "{{ url_for('static', filename='main.css') }}">
 
 </head>
 <body>
@@ -21,13 +22,32 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">            
-        <li class="active"><a href="{{url_for('job.index')}}">职位</a></li>
-        <li><a href="#">公司</a></li>
+        <li class="active"><a href="{{url_for('jobs.job_list')}}">职位</a></li>
+        <li class="active"><a href="{{url_for('companys.company_list')}}">公司</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+        {% if not current_user.is_authenticated %}
         <li><a href="{{url_for('front.register_hr')}}">公司注册</a></li>
         <li><a href="{{url_for('front.register_vister')}}">求职者注册</a></li>
         <li><a href="{{url_for('front.login')}}">登录</a></li>
+        {% else %}
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="username">{{ current_user.username }}</span><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+            {% if current_user.role == 10 %}
+            <li><a href="{{url_for('user.vister_index',user_id=current_user.id)}}">我的主页</a></li>
+            {% elif current_user.role == 20 %}
+            <li><a href="{{url_for('user.hr_index')}}">我的主页</a></li>
+            {% else %}
+            <li><a href="{{url_for('admin.index')}}">我的主页</a></li>
+            {% endif %} 
+            <li role="separator" class="divider"></li>
+            <li><a href="{{ url_for('front.logout') }}">退出登录</a></li>
+            </ul>
+                 
+        </li>
+
+        {% endif %}
      </ul>
    </div> <!--nav navbar-nav -->
    </div><!--<collaps navbar-collapse -->

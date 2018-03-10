@@ -1,4 +1,5 @@
 from .front import front
 from .user import user
-from .job import job
-from .company import company
+from .jobs import jobs
+from .companys import companys
+from .admin import admin

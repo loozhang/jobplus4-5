@@ -1,9 +1,12 @@
 from flask import Flask
-from jobplus.config import configs
-
 from flask_login import LoginManager
 from flask_migrate import Migrate
+
 from jobplus.models import db,User
+from jobplus.config import configs
+from jobplus.handlers import admin,front, user, jobs,companys
+
+
 def register_extensions(app):
     db.init_app(app)
     Migrate(app,db)
@@ -13,11 +16,12 @@ def register_extensions(app):
     def user_loader(id):
         return User.query.get(id)
     login_manager.login_view = 'front.login'
-def register_blueprints(app):
-    from .handlers import front
-    app.register_blueprint(front)
 
-    pass
+
+def register_blueprints(app):
+    for blueprint in (admin,user, jobs, front,companys):
+        app.register_blueprint(blueprint)
+
 
 def create_app(config):
     app = Flask(__name__)

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "macros.html" import render_pagination %}
+{% from "macros.html" import render_pagination,render_jobs %}
 {% block body %}
  <div class="jumbotron">
     <div class="container">
@@ -11,30 +11,14 @@
 
 <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a href="#">热门职位</a></li>
-    <li role="presentation"><a href="#">热门公司</a></li>
+    {% for job in jobs %}
+        {{render_jobs(job)}}
+    {% endfor %}
 </ul>
 
-<div class="row">
-    <div class="col-xs-6 col-md-3">
-    <a href="#" class="thumbnail">
-    <img src="..." alt="...">
-    </a>
-    </div>
-    <div class="col-xs-6 col-md-3">
-    <a href="#" class="thumbnail">
-    <img src="..." alt="...">
-    </a>
-    </div>
-    <div class="col-xs-6 col-md-3">
-    <a href="#" class="thumbnail">
-    <img src="..." alt="...">
-    </a>
-    </div>
-    <div class="col-xs-6 col-md-3">
-    <a href="#" class="thumbnail">
-    <img src="..." alt="...">
-    </a>
-    </div>
-                 
+    <div class="row">
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#">热门公司</a></li>
+</ul>
 </div>
 {% endblock %}

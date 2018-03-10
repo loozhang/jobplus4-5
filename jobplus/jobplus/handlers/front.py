@@ -3,29 +3,19 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request,
 from jobplus.models import  User
 from jobplus.forms import LoginForm,RegisterForm,CompanyRegisterForm
 from flask_login import login_user, logout_user, login_required
-
+from jobplus.models import Job
 front = Blueprint('front', __name__)
 
-"""jobplus首页路由"""
+#"""jobplus首页路由"""
 @front.route('/')
 def index():
-    return render_template('index.html')
-
-
-"""实现三类用户的三个不同的路由"""
-@front.route('/vister')
-def vister_index():
-    return render_template('vister/index.html')
-
-@front.route('/hr')
-def hr_index():
-    return render_template('hr/index.html')
-
-@front.route('/admin')
-def admin_index():
-    return render_template('admin/admin_base.html')
-
-
+    jobs = Job.query.order_by(Job.created_at).limit(9).all()
+    companys = User.query.filter(User.role==User.ROLE_HR).order_by(User.created_at.desc()).limit(8)
+    return render_template('index.html',
+                            jobs=jobs,
+                            companys=companys,
+                                                     )
+#登录时会判断用户的角色
 
 @front.route('/login', methods=['GET', 'POST'])
 def login():
@@ -33,14 +23,17 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         login_user(user, form.remember_me.data)
-        if user.role == 10:
-            return redirect(url_for('.vister_index'))
-#           return render_template('ceshi.html', form=form)
-        elif user.role== 20:
-            return redirect(url_for('.hr_index'))
-        elif user.role== 30:
-            return redirect(url_for('.admin_index'))
+        if user.is_HR:
+            return redirect(url_for("user.hr_index"))
+        elif user.is_admin:
+            return redirect(url_for("admin.index"))
+        else:
+            return redirect(url_for("user.vister_index",user_id=user.id))
     return render_template('login.html', form=form)
+    
+@front.route('/test',methods=['GET','POST'])
+def test():
+    return redirect(url_for("admin.index"))
 
 @front.route('/reigster-vister',methods=['GET','POST'])
 def register_vister():
@@ -51,11 +44,14 @@ def register_vister():
         flash('注册成功，请登录！', 'success')
         return redirect(url_for('.login'))
     return render_template('register/register_vister.html', form=form)
+
+
 @front.route('/reigster-hr',methods=['GET','POST'])
 def register_hr():
     form = CompanyRegisterForm()
     form.test()
     if form.validate_on_submit():
+        form.test()
         form.create_user()
         flash('注册成功，请登录！', 'success')
         return redirect(url_for('.login'))

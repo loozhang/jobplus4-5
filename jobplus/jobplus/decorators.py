@@ -1,7 +1,7 @@
 from flask import abort
 from flask_login import current_user
 from functools import wraps
-from simpledu.models import User
+from jobplus.models import User
 
 def role_required(role):
     """带参数的装饰器，可以使用它保护一个路由处理函数知能被特定的角色的用户访问
