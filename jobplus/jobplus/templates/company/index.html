@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "macros.html" import render_pagination,render_jobs %}
+{% from "macros.html" import render_pagination,render_companys %}
 {% block body %}
  <div class="jumbotron">
          <div class="container">
@@ -7,9 +7,9 @@
          </div>
 </div>
 <div class="row">
-    {% for job in pagination.items %}
-        {{render_jobs(job)}}
+    {% for company in pagination.items %}
+        {{render_companys(company)}}
     {% endfor %}
 </div>
-{{ render_pagination(pagination, 'job.job_list') }}
+{{ render_pagination(pagination, 'company.company_list') }}
 {% endblock %}

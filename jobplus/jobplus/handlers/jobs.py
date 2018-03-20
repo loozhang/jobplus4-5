@@ -4,7 +4,7 @@ from jobplus.models import  User,Job
 from jobplus.forms import LoginForm,RegisterForm,CompanyRegisterForm
 from flask_login import login_user, logout_user, login_required
 
-jobs = Blueprint('jobs',__name__,url_prefix='/jobs')
+jobs = Blueprint('job',__name__,url_prefix='/job')
 
 @jobs.route('/')
 def job_list():

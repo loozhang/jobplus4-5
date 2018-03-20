@@ -47,22 +47,14 @@ def iter_job_data():
                         )
 def run():
     for job in iter_job_data():
-        try:
-            #db.session.add(user)
-            #db.session.add(company)
-            db.session.add(job)
-                
-        except Exception as e:
-           
-            print(e)
-                
-            db.session.rollback()
-            
-    try:
-            
+        db.session.add(job)
+
+    for company in iter_company_data():
+        db.session.add(company)
+        
+    try:    
         db.session.commit()
                 
-    except Exception as e:
-            
+    except Exception as e:            
         print(e)
         db.session.rollback()
