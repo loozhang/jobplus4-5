@@ -24,7 +24,7 @@ def user():
     )
     return render_template('admin/user_list.html', pagination=pagination)
 
-@admin.route('/users/create',methods=['GET','POST'])
+@admin.route('/users/create_user',methods=['GET','POST'])
 @admin_required
 def create_user():
     form =  RegisterForm()
@@ -57,3 +57,28 @@ def delete_user(user_id):
     db.session.commit()
     flash('不能删除自己','success')
     return redirect(url_for('admin.user'))
+
+@admin.route('/users/<int:user_id>/disable', methods=['GET', 'POST'])
+@admin_required
+def disable_user(user_id):
+    user = User.query.get_or_404(user_id)
+    if user.is_disable:
+        user.is_disable = False
+        flash('Disabled successfully', 'success')
+    else:
+        user.is_disable = False
+        flash('Enabled successfully', 'success')
+    db.session.add(user)
+    db.session.commit()
+    return redirect(url_for('admin.users'))
+
+@admin.route('/users/create_company', methods=['GET', 'POST'])
+@admin_required
+def create_company():
+    form = RegisterForm()
+    form.username.label = 'Company Name'
+    if form.validate_on_submit():
+        form.create_user()
+        flash('Company created successfully', 'success')
+        return redirect(url_for('admin.users'))
+    return render_template('admin/create_company.html', form=form)

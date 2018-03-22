@@ -12,14 +12,9 @@ Admin
             <a href="{{url_for('admin.user')}}" class="list-group-item">用户管理</a>
         <a href="#" class="list-group-item">职位管理</a>
         </div>
+    {% block operation %}{% endblock %}
     </div>
-    <div class="col-md-9">
-        <h2>详情</h2>
-        <div class="list-group">
-        <a href="#" class="list-group-item">1</a>
-        </div>
-    </div>
-    {% block user %}{% endblock%}
+    {% block admin %}{% endblock %}
     {% block job %}{% endblock %}
 </div>
 </div>

@@ -18,7 +18,5 @@ def role_required(role):
         return wrapper
     return decorator
 #特定角色的装饰器
-vister_required = role_required(User.ROLE_VISTER)
-hr_required = role_required(User.ROLE_HR)
 admin_required = role_required(User.ROLE_ADMIN)
 
